@@ -20,19 +20,32 @@ class Bar_chart {
      }
   } 
   
-  void update() { 
+  void update() {
+    draw_lines();
+    make_bars();
+  }
+  void draw_lines() {
     line(x_start, y_start, x_end, y_start); // x axis
     stroke(126);
     line(x_start, y_start, x_start, y_end); // y axis
     stroke(126);
-    make_bars();
+    fill(#63cbc8);
+    textSize(displayWidth * .03);
+    text("L1", x_end + 5, y_start);
+    text("L2", x_start, y_end - (y_end * .1));    
   }
   
   void make_bars()
   {
     for (int i = 0; i < myData.length; i++) {
       float bar_width = (x_end - x_start) / x_count; 
-      rect(x_start + bar_width * i, y_start - myData[i].price, bar_width, myData[i].price);
+      myData[i].draw_rect(x_start + bar_width * i, y_start - myData[i].price, bar_width, myData[i].price);
     }
+  }
+  void check_bars() {
+    for (int i = 0; i < myData.length; i++) {
+      myData[i].check_bar();
+    }
+
   }
 }
