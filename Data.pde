@@ -2,7 +2,7 @@ class Data {
   String name;
   int price;
   float x, y, rect_width, rect_height;
-  int rect_color;
+  int rect_color = #63cbc8;
  
   Data (String n, int p) {  
     name = n; 
@@ -13,25 +13,26 @@ class Data {
     y = y_pos;
     rect_width = x_width;
     rect_height = y_height;
-    fill(240);
+    fill(rect_color);
     rect(x,  y, rect_width, rect_height);
-    text(name, x, (y + y_height) + 10);
-    textSize(rect_width * .3);
+    textSize(rect_width * .25);
+    fill(0);
+    text(name, x, y + rect_height, rect_width, (height - y));
+    textAlign(CENTER);
   }
   void check_bar() {
-    //print("Mouse x: " + mouseX + "\n");
-    //print("Mouse y: " + mouseY + "\n");
-    //print("x: " + x + "\n");
-    //print("y: " + y + "\n");
-    //print("end x: " + (x + rect_width) + "\n");
-    //print("end y: " + (y + rect_height) + "\n");
-    //print(name + "\n");
-    //print(price + "\n");
-    if (x  < mouseX && mouseX > x + rect_width) {
-      if (y < mouseY && mouseX > y + rect_height) {
-
-      }
-    }   
+    float left_x = x;
+    float right_x = x + rect_width;
+    float top_y = y;
+    float bottom_y = y + rect_height;
+    
+    if ((left_x  < mouseX && mouseX < right_x) &&
+        (top_y < mouseY && mouseY < bottom_y)) {
+      rect_color = #e9bed7;
+    } else {
+      rect_color = #63cbc8;
+    }
+    
   }
 
 }
