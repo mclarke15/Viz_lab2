@@ -1,5 +1,5 @@
-int displayWidth = 600;
-int displayHeight = 400;
+int displayWidth = 800;
+int displayHeight = 600;
 Bar_chart myChart;
 Data[] data;
 void setup()
@@ -22,7 +22,5 @@ void draw()
   surface.setSize(width, height);
   myChart = new Bar_chart(width, height, data);
   myChart.update(); 
+  myChart.check_bars();
 }
-  void mouseMoved() {
-    myChart.check_bars();
-  }
